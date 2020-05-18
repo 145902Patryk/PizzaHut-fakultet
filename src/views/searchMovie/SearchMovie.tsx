@@ -16,8 +16,9 @@ const useStyles = makeStyles({
         minWidth: '650px',
     },
     wyniki: {
-        width: "400px",
+        width: "500px",
         margin: "auto",
+        textAlign: "center",
     },
     image: {
         left: "50%",
@@ -30,8 +31,14 @@ const useStyles = makeStyles({
         margin: "10px",
         padding: "20px",
     },
-    search:{
-        left: "50%",
+    input: {
+        margin: "10px",
+        width: "300px",
+        height: "35px",
+        textAlign: "center",
+    },
+    div: {
+        textAlign: "center",
     },
 });
 
@@ -55,25 +62,36 @@ const SearchMovie = () => {
     return (
         <div>
             <NavPanel/>
-            <input className={classes.search}
-                placeholder="Enter movie name"
-                onChange={event => setMovieToSearch(event.target.value)}
-            />
-            <div className={classes.wyniki}>
-                {!!movies?.movies.length &&
-                movies?.movies.map(movie => (
-                    <div className={classes.frame}>
-                        <p>{movie.title}</p>
-                        <p>{movie.year}</p>
-                        <img className={classes.image} src={movie.poster}/>
-                        <p></p>
-                    </div>
-                ))
-                }
-            </div>
 
+            <div className={classes.div}>
+                <input className={classes.input} placeholder="Enter movie name"
+                       onChange={event => setMovieToSearch(event.target.value)}
+                />
+            </div>
+            <hr></hr>
+
+                <div className={classes.wyniki}>
+
+                    {!!movies?.movies.length &&
+                    movies?.movies.map(movie => (
+                        <div className={classes.frame}>
+                            <table>
+                                <tr>
+                                    <b>{movie.title}</b>
+                                </tr>
+                                <tr>
+                                    <b>{movie.year}</b>
+                                </tr>
+                            <img className={classes.image} src={movie.poster}/>
+                                </table>
+                        </div>
+                    ))
+                    }
         </div>
-    );
+
+</div>
+)
+    ;
 };
 
 export default SearchMovie;
